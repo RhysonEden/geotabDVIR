@@ -1,19 +1,39 @@
 import React, { useState } from "react";
 import moment from "moment";
-import DriverDropdown from "./DriverDropdown";
+import { useHistory } from "react-router-dom";
 
 function DVIRResults() {
+  const history = useHistory();
   let resp = JSON.parse(localStorage.getItem("results"));
   let comment = localStorage.getItem("remark");
+
+  const goBack = (e) => {
+    e.preventDefault();
+    history.push("/home");
+  };
   if (resp === undefined || resp == 0) {
-    return <div className="zero">No Driver Data Found</div>;
+    return (
+      <>
+        <div className="zero">
+          <button className="zero" onClick={goBack}>
+            No Driver Data Found, click here to search
+          </button>
+        </div>
+      </>
+    );
   } else {
     return (
-      <div className="spread">
-        <div>
+      <div
+      // className="spread"
+      >
+        <div
+        // className="test"
+        >
           {resp.map((resp, index) => (
-            <div className="test">
-              <div key={resp.id} value={resp.id}>
+            <div
+            // className="testtwo"
+            >
+              <div className="test" key={resp.id} value={resp.logType}>
                 <div className="resultone">
                   Log Type ={" "}
                   {resp.logType === "PreTrip"
@@ -23,7 +43,6 @@ function DVIRResults() {
                 <div className="resulttwo">
                   Log Date = {moment(resp.dateTime).format("MM/DD/YYYY")}
                 </div>
-                {/* -----------------------Temp Fix ------------------------------- */}
                 <div>
                   {resp.driverRemark ? (
                     <div className="resultthree">
@@ -36,21 +55,25 @@ function DVIRResults() {
                 <div className="resultthree">
                   {resp.dVIRDefects ? "Defects detected/not repaired" : ""}
                 </div>
-                {/* -------------------Temp Fix End-------------------------------- */}
                 <div>
-                  {resp.dVIRDefects
-                    ? resp.dVIRDefects.map((innerResp, index) =>
-                        innerResp.defectRemarks.map((lastResp, index) => (
-                          <div className="resultthree">
-                            Defect is the {lastResp.remark}
-                          </div>
-                        ))
-                      )
-                    : "No Defects reported"}
+                  {resp.dVIRDefects ? (
+                    resp.dVIRDefects.map((innerResp, index) =>
+                      innerResp.defectRemarks.map((lastResp, index) => (
+                        <div className="resultthree">
+                          Defect is the {lastResp.remark}
+                        </div>
+                      ))
+                    )
+                  ) : (
+                    <div className="resultfour">No Defects reported</div>
+                  )}
                 </div>
               </div>
             </div>
           ))}
+          <button className="buttonsmallreturn" onClick={goBack}>
+            Click to search drivers again.
+          </button>
         </div>
       </div>
     );

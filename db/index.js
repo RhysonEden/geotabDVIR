@@ -99,21 +99,6 @@ async function getUsersByID(id) {
 
 async function testAuth() {
   console.log("running Test Auth");
-  // let databaseInsert = "guardian_fueling_technologies";
-  // let userNameInsert = "jgale@guardianfueltech.com";
-  // let passwordInsert = "kaelyn09";
-  // let pathNameInsert = "https://my.geotab.com";
-  // let type = "Devices";
-  // let results = 5000;
-
-  // const authentication = {
-  //   credentials: {
-  //     database: databaseInsert,
-  //     userName: userNameInsert,
-  //     password: passwordInsert,
-  //   },
-  //   path: pathNameInsert,
-  // };
 
   const api = new GeotabApi(authentication);
   console.log("API AUTH", api);

@@ -90,14 +90,16 @@ const App = () => {
           userLongitude={userLongitude}
         />
       </div>
-      <Switch>
-        {/* <Route path="/"> */}
-        <div className="main">
-          {key === null && <Route path="/home" component={Login} />}
-          {key !== null && <Route path="/home" component={DatePicker} />}
-          <Route path="/results" component={DVIRResults} />
-        </div>
-      </Switch>
+      <Router>
+        <Switch>
+          {/* <Route path="/"> */}
+          <div className="main">
+            {key === null && <Route path="/home" component={Login} />}
+            {key !== null && <Route path="/home" component={DatePicker} />}
+            <Route path="/results" component={DVIRResults} />
+          </div>
+        </Switch>
+      </Router>
     </>
   );
 };

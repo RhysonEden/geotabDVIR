@@ -16,9 +16,9 @@ const options = {
 
 ReactDOM.render(
   <AlertProvider template={AlertTemplate} {...options}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    {/* <BrowserRouter> */}
+    <App />
+    {/* </BrowserRouter> */}
   </AlertProvider>,
   document.getElementById("root")
 );
